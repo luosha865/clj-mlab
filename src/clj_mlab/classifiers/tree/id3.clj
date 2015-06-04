@@ -4,6 +4,6 @@
 
 
 (defn create-Id3 []
-  (let [cls (new Id3)]
+  (let [cls (Id3.)]
     cls))
 

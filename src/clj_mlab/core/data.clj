@@ -55,8 +55,8 @@
   (.numAttributes dataset))
 
 (defn new-dataset [file]
-  (let [input (new FileReader file)
-        dataset (new Instances input)]
+  (let [input (FileReader. file)
+        dataset (Instances. input)]
     dataset))
 
 (defn class-index [dataset]
