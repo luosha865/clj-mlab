@@ -69,4 +69,4 @@
   (.setClassIndex dataset pos))
 
 (defn instance-at [dataset pos]
-  (.index dataset pos))
+  (.instance dataset pos))

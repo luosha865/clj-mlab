@@ -2,17 +2,28 @@
   (:import [weka.classifiers Evaluation Classifier]
            [weka.core Instances Attribute]
            [java.util Random Date]
+           [java.lang Math]
            [java.io ObjectOutputStream FileOutputStream ObjectInputStream FileInputStream])
   (:require [clj-mlab.core.data :as data]))
 
 
 
 
-(defn buildClassifier [cls,dataset]
-  (.buildClassifier cls dataset))
+(defn buildClassifier [classifier,dataset]
+  (.buildClassifier classifier dataset))
 
-(defn classifyInstance [cls,instance]
-  (.classifyInstance cls instance))
+(defn classifyInstance [classifier,instance]
+  (.classifyInstance classifier instance))
 
-(defn classifyDateSet [cls,dataset]
-  map )
+(defn classifyDateSet [classifier,dataset]
+  (let [num (data/num-dataset dataset)]
+    (if (> num 0)
+      (loop [n 0
+             err 0]
+        (let [instance (data/instance-at dataset n)
+              cls (classifyInstance classifier instance)
+              e (Math/abs (- (data/class-value instance) cls))]
+          (if (< n (- num 1))
+            (recur (inc n)  (+ e err) )
+            err))))))
+
