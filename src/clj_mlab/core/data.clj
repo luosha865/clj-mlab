@@ -54,6 +54,9 @@
 (defn num-attribute [dataset]
   (.numAttributes dataset))
 
+(defn num-classes [dataset]
+  (.numClasses dataset))
+
 (defn new-dataset [file]
   (let [input (FileReader. file)
         dataset (Instances. input)]
@@ -70,3 +73,9 @@
 
 (defn instance-at [dataset pos]
   (.instance dataset pos))
+
+
+(defn delete-attribute-at [dataset pos]
+  (.deleteAttributeAt dataset pos))
+
+
