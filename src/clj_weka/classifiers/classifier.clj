@@ -1,10 +1,10 @@
-(ns clj-mlab.classifiers.classifier
+(ns clj-weka.classifiers.classifier
   (:import [weka.classifiers Evaluation Classifier]
            [weka.core Instances Attribute]
            [java.util Random Date]
            [java.lang Math]
            [java.io ObjectOutputStream FileOutputStream ObjectInputStream FileInputStream])
-  (:require [clj-mlab.core.data :as data]))
+  (:require [clj-weka.core.data :as data]))
 
 
 

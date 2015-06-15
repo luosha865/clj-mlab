@@ -1,5 +1,5 @@
-(ns clj-mlab.core.data-test
-  (:require [clj-mlab.core.data :as data]
+(ns clj-weka.core.data-test
+  (:require [clj-weka.core.data :as data]
             [clojure.test :refer :all]))
 
 (deftest a-test

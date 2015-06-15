@@ -1,6 +1,6 @@
-(ns clj-mlab.classifiers.tree.id3
+(ns clj-weka.classifiers.tree.id3
   (:import [weka.classifiers.trees Id3])
-  (:require [clj-mlab.core.data :as data]))
+  (:require [clj-weka.core.data :as data]))
 
 
 (defn create-Id3 []

@@ -1,10 +1,10 @@
-(ns clj-mlab.clusterers.clusterer
+(ns clj-weka.clusterers.clusterer
   (:import [weka.clusterers AbstractClusterer NumberOfClustersRequestable]
            [weka.core Instances Attribute]
            [java.util Random Date]
            [java.lang Math]
            [java.io ObjectOutputStream FileOutputStream ObjectInputStream FileInputStream])
-  (:require [clj-mlab.core.data :as data]))
+  (:require [clj-weka.core.data :as data]))
 
 
 (defn setNumClusters [clusterer,num]

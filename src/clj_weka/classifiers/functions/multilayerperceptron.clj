@@ -1,6 +1,6 @@
-(ns clj-mlab.classifiers.functions.multilayerperceptron
+(ns clj-weka.classifiers.functions.multilayerperceptron
   (:import [weka.classifiers.functions MultilayerPerceptron])
-  (:require [clj-mlab.core.data :as data]))
+  (:require [clj-weka.core.data :as data]))
 
 
 (defn create-MultilayerPerceptron []

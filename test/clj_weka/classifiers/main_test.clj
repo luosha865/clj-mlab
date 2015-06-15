@@ -1,9 +1,9 @@
-(ns clj-mlab.classifiers.main-test
-  (:require [clj-mlab.core.data :as data]
-            [clj-mlab.classifiers.tree.id3 :as id3]
-            [clj-mlab.classifiers.tree.simplecart :as simplecart]
-            [clj-mlab.classifiers.functions.multilayerperceptron :as multilayerperceptron]
-            [clj-mlab.classifiers.classifier :as classifier]
+(ns clj-weka.classifiers.main-test
+  (:require [clj-weka.core.data :as data]
+            [clj-weka.classifiers.tree.id3 :as id3]
+            [clj-weka.classifiers.tree.simplecart :as simplecart]
+            [clj-weka.classifiers.functions.multilayerperceptron :as multilayerperceptron]
+            [clj-weka.classifiers.classifier :as classifier]
             [clojure.test :refer :all]))
 
 (deftest a-test

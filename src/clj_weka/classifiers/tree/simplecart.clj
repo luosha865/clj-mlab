@@ -1,6 +1,6 @@
-(ns clj-mlab.classifiers.tree.simplecart
+(ns clj-weka.classifiers.tree.simplecart
   (:import [weka.classifiers.trees SimpleCart])
-  (:require [clj-mlab.core.data :as data]))
+  (:require [clj-weka.core.data :as data]))
 
 
 (defn create-SimpleCart []

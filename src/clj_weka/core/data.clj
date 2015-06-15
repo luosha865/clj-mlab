@@ -1,4 +1,4 @@
-(ns clj-mlab.core.data
+(ns clj-weka.core.data
   (:import [weka.core Attribute FastVector Instance Instances])
   (:import [java.io FileReader]))
 

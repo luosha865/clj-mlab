@@ -1,7 +1,7 @@
-(ns clj-mlab.clusterers.main-test
-  (:require [clj-mlab.core.data :as data]
-            [clj-mlab.clusterers.simplekmeans :as kmeans]
-            [clj-mlab.clusterers.clusterer :as clusters]
+(ns clj-weka.clusterers.main-test
+  (:require [clj-weka.core.data :as data]
+            [clj-weka.clusterers.simplekmeans :as kmeans]
+            [clj-weka.clusterers.clusterer :as clusters]
             [clojure.test :refer :all]))
 
 (deftest a-test
