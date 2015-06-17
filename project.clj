@@ -4,10 +4,10 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [nz.ac.waikato.cms.weka/weka-stable "3.6.12"]
-                 [opencv/opencv "2.4.11"]
-                 [opencv/opencv-native "2.4.11"]]
-  :plugins [[lein-localrepo "0.5.3"]]
-  :main ^:skip-aot clj-mlab.core
+                 [nz.ac.waikato.cms.weka/weka-stable "3.6.12"]]
+  :plugins [[lein-localrepo "0.5.3"] [lein-expand-resource-paths "0.0.1"]]
+  :resource-paths ["libs/*"]
+  :injections [(clojure.lang.RT/loadLibrary org.opencv.core.Core/NATIVE_LIBRARY_NAME)]
+  :main ^:skip-aot clj-cv.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
