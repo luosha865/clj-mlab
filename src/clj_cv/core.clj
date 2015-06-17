@@ -4,6 +4,5 @@
   (:gen-class))
 
 (defn -main
-  [& args]
-  (opencv_core/cvLoadImage "/Users/tianhaowei/Pictures/a.jpg")
+  [& args)
   (println "Hello CV!"))
