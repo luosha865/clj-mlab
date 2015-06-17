@@ -4,5 +4,5 @@
   (:gen-class))
 
 (defn -main
-  [& args)
+  [& args]
   (println "Hello CV!"))
