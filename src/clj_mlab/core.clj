@@ -1,10 +1,10 @@
 (ns clj-mlab.core
-  (:require [clj-mlab.classifiers.lda  :as lda])
+  (:require [clj-mlab.example.DBNFullMnistExample  :as dbn])
   (:gen-class))
 
 
 
 (defn -main
   [& args]
-  (lda/start)
+  (println dbn/conf)
   (println "Hello ML!"))
