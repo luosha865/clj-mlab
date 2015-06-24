@@ -4,7 +4,7 @@
   (:import [org.deeplearning4j.datasets.iterator.impl MnistDataSetIterator])
   (:import [org.deeplearning4j.eval Evaluation])
   (:import [org.deeplearning4j.nn.api OptimizationAlgorithm])
-  (:import [org.deeplearning4j.nn.conf MultiLayerConfiguration NeuralNetConfiguration])
+  (:import [org.deeplearning4j.nn.conf MultiLayerConfiguration NeuralNetConfiguration NeuralNetConfiguration$Builder])
   (:import [org.deeplearning4j.nn.conf.distribution NormalDistribution])
   (:import [org.deeplearning4j.nn.conf.layers RBM])
   (:import [org.deeplearning4j.nn.conf.override ClassifierOverride])
@@ -16,35 +16,56 @@
   (:import [org.nd4j.linalg.api.ndarray INDArray])
   (:import [org.nd4j.linalg.dataset DataSet])
   (:import [org.nd4j.linalg.factory Nd4j])
-  (:import [org.nd4j.linalg.lossfunctions LossFunctions])
+  (:import [org.nd4j.linalg.lossfunctions LossFunctions LossFunctions$LossFunction])
   (:import [org.slf4j Logger])
   (:import [org.slf4j LoggerFactory])
   (:import [org.slf4j LoggerFactory])
   (:import [java.util Arrays Collections]))
 
+(def numRows  (int 28))
+(def numColumns (int 28))
+(def outputNum  (int 10))
+(def numSamples (int 60000))
+(def batchSize (int 100))
+(def iterations (int 10))
+(def seed (int 123))
+(def listenerFreq (int (/ batchSize  5)))
 
-(def conf
-  (doto (NeuralNetConfiguration.)
-    (.Builder)
+(def iter
+  (MnistDataSetIterator. batchSize numSamples))
+
+(def builder
+  (doto (NeuralNetConfiguration$Builder.)
     (.layer (RBM.))
     (.nIn (* numRows numColumns))
     (.nOut outputNum)
-    (.weightInit (.DISTRIBUTION WeightInit))
-    (.seed seed)
+    (.weightInit WeightInit/DISTRIBUTION)
     (.dist (NormalDistribution. 0 1))
     (.constrainGradientToUnitNorm true)
     (.iterations iterations)
-    (.lossFunction (.RMSE_XENT (.LossFunction LossFunctions)))
+    (.lossFunction LossFunctions$LossFunction/RMSE_XENT)
     (.learningRate 1e-1)
     (.momentum 0.5)
-    (.momentumAfter (.singletonMap Collections 3 0.9))
-    (.optimizationAlgo (.CONJUGATE_GRADIENT OptimizationAlgorithm))
-    (.list 4)
-    (.hiddenLayerSizes (int-array 3 500 250 200))
-    (.override 3 (.build (ClassifierOverride.)))))
+    (.momentumAfter (Collections/singletonMap 3 0.9))
+    (.optimizationAlgo OptimizationAlgorithm/LBFGS)))
+
+(def listbuilder
+  (doto (.list builder 4)
+    (.hiddenLayerSizes (int-array [500 250 200]))
+    (.override (ClassifierOverride. 3))))
+
+(def conf
+  (.build listbuilder))
+
 
 (def model
-  (MultiLayerNetwork. conf))
+  (doto (MultiLayerNetwork. conf)
+    (.init)
+    (.setListeners (Collections/singletonList (ScoreIterationListener. listenerFreq)))
+    (.fit iter)))
 
-(defn start
-  [])
+
+(defn start []
+  (println (class conf))
+  (println (class model)))
+

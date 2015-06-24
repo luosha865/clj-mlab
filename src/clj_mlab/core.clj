@@ -6,5 +6,5 @@
 
 (defn -main
   [& args]
-  (println dbn/conf)
+  (dbn/start)
   (println "Hello ML!"))
